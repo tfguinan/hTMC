@@ -15,7 +15,7 @@ OUTDIR=/data/menzies_projects/hewittlab/HTMC/share/output_data
 
 
 # CTL
-Rscript $AGGR_R "${DIRECTORY}/HTMC_pool-?_GRCh38/*_cellbender/*.h5" "${OUTDIR}/HTMC_CTL_2_merged.RDS"
+Rscript $AGGR_R "${DIRECTORY}/HTMC_pool-?_GRCh38/*_cellbender/*_filtered.h5" "${OUTDIR}/HTMC_CTL_2_merged.RDS"
 
 # DEX
-Rscript $AGGR_R "${DIRECTORY}/HTMC_pool-dex?_GRCh38/*_cellbender/*.h5" "${OUTDIR}/HTMC_DEX_2_merged.RDS"
+Rscript $AGGR_R "${DIRECTORY}/HTMC_pool-dex?_GRCh38/*_cellbender/*_filtered.h5" "${OUTDIR}/HTMC_DEX_2_merged.RDS"

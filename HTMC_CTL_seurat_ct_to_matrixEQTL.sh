@@ -56,6 +56,8 @@ QTLPATH=$CTDIR/HTMC_CTL_${CT}_eQTLs
 
 # TODO reorder the arguments in the script
 # $AGGOBJ $COVIN $PCAIN $BEDIN $IDXPATH $PMXPATH $PCVPATH $MMXPATH $SNPPATH 
+
+# This needs an update to allow pulling from X2_scpred_predictions
 Rscript $DIR/main/v015/HTMC_seurat_ct_to_peer.R \
     $AGGOBJ $IDXPATH $PMXPATH $COVIN $PCAIN $BEDIN $PCVPATH $SNPPATH $MMXPATH $CT
 

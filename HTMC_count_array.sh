@@ -10,12 +10,12 @@
 
 FULL_TIME="$(date +%s)" 
 
-# Per each pool, this script runs: CellRanger Count; CellBender; Scrublet; SCDS; and (on Scrublet ∩ SCDS singlet barcodes) Demuxlet
+# Per each pool, this script runs: CellRanger Count; CellBender; Scrublet; SCDS; and (on Scrublet SCDS singlet barcodes) Demuxlet
 
 ### !!! FILL HERE !!! ###
 
 THREADS=32
-NAME=HTMC_count_array
+NAME=HTMC_count_array_v015
 # This script requires a main project directory (dir), we recommend within this to have raw_data and output_data
 DIR=/data/menzies_projects/hewittlab/HTMC/share
 MAIN_CSV=${DIR}/raw_data/HTMC_count_array.csv
@@ -204,13 +204,15 @@ CELLBENDER_BARCODES=${CELLBENDER_OUT_DIR}/${POOL}_cell_barcodes.csv
 
 echo && echo "##### DEMUXLET #####"
 
-DEMUXLET_OUT_DIR=${OUT_DIR}/${POOL}_demuxlet
+DEMUXLET_OUT_DIR=${OUT_DIR}/${POOL}_demuxlet_default_allbc
 mkdir -p $DEMUXLET_OUT_DIR
 
 module load rosalind gcc-env bcftools bedtools samtools singularity
 # TODO include Cellbender, Scrublet, and Scds (Non-empty, likely singlet)
 
-# # Filter the 10x bam file based on barcodes that pass Cellbender (Non-empty), Scrublet and Scds (likely singlet)
+
+# Filter the 10x bam file based on barcodes that pass Cellbender (Non-empty)
+# Scrublet and SCDS disabled currrently, scrublet bimodal prediction was failing
 BAM=${CR_OUT_DIR}/possorted_genome_bam.bam
 FILTERED_BAM=${CR_OUT_DIR}/${POOL}_possorted_genome_filtered.bam
 ${HELPER_DIR}/filter_bam_file_for_popscle_dsc_pileup.sh $BAM $CELLBENDER_BARCODES $GENO_VCF $FILTERED_BAM
